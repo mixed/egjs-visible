@@ -42,7 +42,7 @@ class Visible extends Component {
 			this.refresh();
 		});
 	}
-	setupProp(element, options){
+	setupProp(element, options) {
 		this.options = {
 			targetClass: "check_visible",
 			expandSize: 0,
@@ -50,7 +50,7 @@ class Visible extends Component {
 		Object.assign(this.options, options);
 	}
 
-	setupDom(element, options){
+	setupDom(element, options) {
 		if (element === undefined) {
 			this._wrapper = document;
 		}
