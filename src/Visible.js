@@ -38,7 +38,7 @@ class Visible extends Component {
 	 */
 	constructor(element, options) {
 		super(element, options);
-		this.once("activate",()=>{
+		this.once("activate", () => {
 			this.refresh();
 		});
 	}
