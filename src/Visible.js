@@ -2,7 +2,7 @@
  * Copyright (c) NAVER Corp.
  * egjs-visible projects are licensed under the MIT license
  */
-import Component from "@egjs/component";
+import Component from "./component";
 
 // IE8
 // https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
@@ -37,13 +37,20 @@ class Visible extends Component {
 	 * @param {Number} [options.expandSize=0] The size of the expanded area to be checked whether an element is visible. If this value is less than zero, the size of the area is smaller than that of the base element. <ko>기준 엘리먼트의 경계를 넘어 엘리먼트가 보이는지 확인할 영역의 크기. 값이 0보다 작으면 엘리먼트가 보이는지 확인할 영역의 크기가 기준 엘리먼트보다 작아진다</ko>
 	 */
 	constructor(element, options) {
-		super();
+		super(element, options);
+		this.once("activate",()=>{
+			this.refresh();
+		});
+	}
+	setupProp(element, options){
 		this.options = {
 			targetClass: "check_visible",
 			expandSize: 0,
 		};
 		Object.assign(this.options, options);
+	}
 
+	setupDom(element, options){
 		if (element === undefined) {
 			this._wrapper = document;
 		}
@@ -74,8 +81,6 @@ class Visible extends Component {
 			dummy.innerHTML = "<span class='dummy'></span>";
 			return dummies.length === 1;
 		})();
-
-		this.refresh();
 	}
 
 	static _hasClass(el, className) {

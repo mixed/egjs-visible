@@ -13,13 +13,15 @@ $(function() {
 	$("#content").html(html.join(""));
 	var visibleView = new eg.Visible(document,{
 		targetClass : "check_visible",
-		expandSize : 0
+		expandSize : 0,
+		activate : false
 	}).on("change", function(e) {
 		// process visible elements
 		$(e.visible).addClass("visible");
 		// process invisible elements
 		$(e.invisible).removeClass("visible");
 	});
+	visibleView.activate();
 	// bind scroll event
 	$(window).scroll(function() {
 		visibleView.check(200);
